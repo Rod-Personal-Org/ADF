@@ -1,0 +1,159 @@
+{
+	"name": "CopySP",
+	"properties": {
+		"description": "Copiar datos a partir de SP",
+		"activities": [
+			{
+				"name": "LookProduct",
+				"description": "Búsqueda de Productos",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "Select ProductModelID From [SalesLT].[ProductModel]\nOrder by ProductModelID",
+						"queryTimeout": "02:00:00"
+					},
+					"dataset": {
+						"referenceName": "AzureSqlProductsModel",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ProducModels",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "LookProduct",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ProductsModel",
+					"value": {
+						"value": "@array(activity('LookProduct').output)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ForEachProductModel",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "ProducModels",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('ProductsModel')",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "NewProductModelsArray",
+							"type": "AppendVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "CopyProductsModel",
+								"value": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "uspReadProductModels",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "NewProductModelsArray",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[uspReadProductModel]",
+								"storedProcedureParameters": {
+									"productModelID": {
+										"value": {
+											"value": "@item().count",
+											"type": "Expression"
+										},
+										"type": "Int32"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "AzureSqlDatabaseADVW",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "SpResult",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "uspReadProductModels",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "SPResult",
+								"value": {
+									"value": "string(@activity('uspReadProductModels').output)",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"concurrency": 1,
+		"variables": {
+			"ProductsModel": {
+				"type": "Array"
+			},
+			"CopyProductsModel": {
+				"type": "Array"
+			},
+			"SPResult": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
