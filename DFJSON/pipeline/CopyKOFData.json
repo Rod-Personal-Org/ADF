@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_s1l",
+				"name": "file2DB",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -106,6 +106,46 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Send a failure notification",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "file2DB",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-49.eastus2.logic.azure.com:443/workflows/bb5bc06b2c66463084ab209cc8a644fe/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=fxm1msoxUxO38uW_zoTiISSlKZzcFZmR2mSbkBY54_4",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"DataFactoryName": "@{pipeline().DataFactory}",
+						"PipelineName": "@{pipeline().Pipeline}",
+						"Subject": "An error has occurred!",
+						"ErrorMessage": "@{pipeline().ErrorMessage}",
+						"EmailTo": "rodrigr@microsoft.com"
+					},
+					"datasets": [
+						{
+							"referenceName": "SourceDataset_s1l",
+							"type": "DatasetReference"
+						}
+					]
+				}
 			}
 		],
 		"annotations": []
