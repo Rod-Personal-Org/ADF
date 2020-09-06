@@ -136,7 +136,7 @@
 						"DataFactoryName": "@{pipeline().DataFactory}",
 						"PipelineName": "@{pipeline().Pipeline}",
 						"Subject": "An error has occurred!",
-						"ErrorMessage": "@{pipeline().ErrorMessage}",
+						"ErrorMessage": "Run ID: @{pipeline().RunId}. Please, check the logs!",
 						"EmailTo": "rodrigr@microsoft.com"
 					},
 					"datasets": [
