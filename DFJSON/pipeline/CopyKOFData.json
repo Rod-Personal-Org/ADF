@@ -38,6 +38,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "Delete from [dbo].[txtMateriales]",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
