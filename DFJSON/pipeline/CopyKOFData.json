@@ -277,7 +277,7 @@
 						"DataFactoryName": "@{pipeline().DataFactory}",
 						"PipelineName": "@{pipeline().Pipeline}",
 						"Subject": "Everything OK",
-						"ErrorMessage": "Run ID: @{pipeline().RunId}. Everything OK",
+						"ErrorMessage": "Run ID: @{pipeline().RunId}. @{activity('KOF-file-DB').output}. Everything OK",
 						"EmailTo": "rodrigr@microsoft.com"
 					},
 					"datasets": [
