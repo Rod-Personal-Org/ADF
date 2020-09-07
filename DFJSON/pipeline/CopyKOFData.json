@@ -38,7 +38,6 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "delete from txt.Materiales",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
