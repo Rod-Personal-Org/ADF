@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "file2DB",
+				"name": "KOF-file-DB",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -112,7 +112,7 @@
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "file2DB",
+						"activity": "KOF-file-DB",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -152,7 +152,7 @@
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "file2DB",
+						"activity": "KOF-file-DB",
 						"dependencyConditions": [
 							"Succeeded"
 						]
