@@ -49,7 +49,7 @@
 							"referenceName": "KofFilesRepository",
 							"type": "LinkedServiceReference"
 						},
-						"path": "logs"
+						"path": "files/MaterialesPromociones/Logs"
 					},
 					"validateDataConsistency": true,
 					"translator": {
@@ -57,34 +57,133 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "Id",
+									"name": "sku",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Id",
+									"name": "sku",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "desc",
+									"name": "name",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "desc",
+									"name": "name",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "price",
+									"name": "description",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "price",
+									"name": "description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "position",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "position",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "packing",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "packing",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "category",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "category",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "returnable",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "returnable",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "pieces",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "pieces",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "volume",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "volume",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "brand",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "brand",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "flavor",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "flavor",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "imageName",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "imageName",
 									"type": "String"
 								}
 							}
