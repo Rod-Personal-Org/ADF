@@ -291,7 +291,14 @@
 			{
 				"name": "MoveFile",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "KOF-file-DB",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -344,6 +351,44 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "DeleteInputFile",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "MoveFile",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "deleteFileTxtMateriales",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "KofFilesRepository",
+							"type": "LinkedServiceReference"
+						},
+						"path": "files/MaterialesPromociones/Logs"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true
+					}
+				}
 			}
 		],
 		"annotations": []

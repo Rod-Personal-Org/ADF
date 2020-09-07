@@ -1,0 +1,19 @@
+{
+	"name": "deleteFileTxtMateriales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "KofFilesRepository",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Materiales.txt",
+				"folderPath": "MaterialesPromociones",
+				"container": "files"
+			}
+		}
+	}
+}
