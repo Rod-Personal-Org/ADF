@@ -237,7 +237,7 @@
 						"DataFactoryName": "@{pipeline().DataFactory}",
 						"PipelineName": "@{pipeline().Pipeline}",
 						"Subject": "An error has occurred!",
-						"ErrorMessage": "Run ID: @{pipeline().RunId}. Please, check the logs!",
+						"ErrorMessage": "Run ID: @{pipeline().RunId}. @{activity('KOF-file-DB').Error.Message}Please, check the logs!",
 						"EmailTo": "rodrigr@microsoft.com"
 					},
 					"datasets": [
