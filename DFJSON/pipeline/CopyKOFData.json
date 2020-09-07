@@ -348,7 +348,10 @@
 				"outputs": [
 					{
 						"referenceName": "txtMaterialesProcesado",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": "default"
+						}
 					}
 				]
 			},
