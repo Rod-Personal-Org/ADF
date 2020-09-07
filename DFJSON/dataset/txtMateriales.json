@@ -1,0 +1,29 @@
+{
+	"name": "txtMateriales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "KofFilesRepository",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Materiales.txt",
+				"folderPath": "MaterialesPromociones",
+				"container": "files"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "sku|name|description|position|packing|category|returnable|pieces|volume|brand|flavor|imageName|",
+				"type": "String"
+			}
+		]
+	}
+}

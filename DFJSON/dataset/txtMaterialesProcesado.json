@@ -1,0 +1,28 @@
+{
+	"name": "txtMaterialesProcesado",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "KofFilesRepository",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "MaterialesPromociones/UltimosArchvos",
+				"container": "files"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
