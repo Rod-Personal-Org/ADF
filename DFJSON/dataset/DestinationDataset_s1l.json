@@ -10,7 +10,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "txt.Materiales"
+			"table": "txtMateriales"
 		}
 	}
 }
