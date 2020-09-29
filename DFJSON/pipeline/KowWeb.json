@@ -1,0 +1,46 @@
+{
+	"name": "KowWeb",
+	"properties": {
+		"description": "Ca3ll eMule API",
+		"activities": [
+			{
+				"name": "eMule API",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://api-gateway.yalochat.com/femsa/deltas/mx/qa/products",
+					"method": "POST",
+					"headers": {
+						"x-api-key": "NlpJ54VyvIy1zgOds40cpTfinUOAHf5bufyB7Ic0",
+						"Content-Type": "application/json"
+					},
+					"body": [
+						{
+							"sku": "350",
+							"name": "Coca-Cola Original 34 Bidrio 24 pzas R",
+							"description": "COCA COLA 12 OZ VIDRIO R 24 C3",
+							"position": 1,
+							"packaging": "Vidrio",
+							"category": "COLAS",
+							"returnable": "TRUE",
+							"pieces": "24 pzas",
+							"volume": "355 ml",
+							"brand": "Coca-Cola",
+							"flavor": "Original",
+							"imageName": "350.png"
+						}
+					]
+				}
+			}
+		],
+		"annotations": []
+	}
+}
